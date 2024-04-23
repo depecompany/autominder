@@ -1,0 +1,25 @@
+version: '3.3'
+
+services:
+  #backend
+  backend:
+    container_name: autominder_backend
+    build: ./backend
+    expose:
+      - 4201
+    ports:
+      - 4201:443
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:16.2-alpine3.18
+    restart: always
+    container_name: autominder_postgres
+    environment:
+      - POSTGRES_HOST:127.0.0.1
+      - POSTGRES_USER=ignacio
+      - POSTGRES_PASSWORD=06072001
+      - POSTGRES_DB=autominder
+    ports:
+      - 5433:5432
