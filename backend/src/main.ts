@@ -1,5 +1,4 @@
 import express, { Application } from "express";
-import { hola } from "./test";
 
 const app: Application = express();
 
