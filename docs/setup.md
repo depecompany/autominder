@@ -19,4 +19,8 @@ $ docker-compose up
 # o
 $ docker-compose up -d
 # Para que se ejecture en segundo plano
+
+# Instalar dependencias backend
+$ cd backend
+$ npm install
 ```
