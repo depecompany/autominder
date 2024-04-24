@@ -1,4 +1,4 @@
-# autoMinder
+# AutoMinder
 
 La mejor aplicación para gestionar y mantener tu vehiculo en perfectas condiciones
 
