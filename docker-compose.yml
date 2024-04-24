@@ -9,6 +9,8 @@ services:
       - 4201
     ports:
       - 4201:443
+    volumes:
+      - ./backend:/admin
     depends_on:
       - postgres
 
