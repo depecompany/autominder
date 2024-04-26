@@ -16,7 +16,6 @@ services:
 
   postgres:
     image: postgres:16.2-alpine3.18
-    restart: always
     container_name: autominder_postgres
     environment:
       - POSTGRES_HOST:127.0.0.1
