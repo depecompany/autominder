@@ -1,16 +1,16 @@
-version: '3.3'
-
 services:
   #backend
   backend:
     container_name: autominder_backend
     build: ./backend
-    expose:
-      - 4201
     ports:
-      - 4201:443
+      - 4201:4201
     volumes:
       - ./backend:/admin
+    env_file:
+      - ./backend/.env
+    environment:
+      - NODE_ENV=development
     depends_on:
       - postgres
 

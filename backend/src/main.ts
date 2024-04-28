@@ -1,10 +1,18 @@
 import express, { Application } from "express";
 import "dotenv/config";
+import morgan from 'morgan';
+import cors from 'cors';
+
+import { router } from './route/ApiV1/index';
 
 const PORT = process.env.PORT;
 
 const app: Application = express();
+app.use(router);
+app.use(morgan('dev'));
+app.use(cors());
+
 
 app.listen(PORT, () => {
-  console.log(`Servidor corriendo en el puerto ${PORT}`);
+  console.log(`Server on http://localhost:${PORT}`);
 });
