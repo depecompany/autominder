@@ -12,10 +12,10 @@ const cleanFileName = (fileName: string): string | undefined => {
 
 readdirSync(PATH_ROUTER).filter((fileName) => {
   const cleanName = cleanFileName(fileName);
-  if (cleanName !== "index") {
+  if (cleanName !== "index" && cleanName !== "ApiV1") {
     import(`./${cleanName}`).then((module) => {
       console.log(
-        `Se esta cargando la rutas API http://localhost:4201/api/${cleanName}`
+        `Se esta cargando la rutas ADMIN http://localhost:4201/admin/${cleanName}`
       );
       router.use(`/${cleanName}`, module.router);
     });
