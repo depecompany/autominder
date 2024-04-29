@@ -13,7 +13,9 @@
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "pg": "^8.11.5",
+    "sequelize": "^6.37.3"
   },
   "devDependencies": {
     "@types/cors": "2.8.17",
@@ -21,8 +23,9 @@
     "@types/express": "4.17.21",
     "@types/morgan": "^1.9.9",
     "@types/multer": "1.4.11",
+    "@types/pg": "^8.11.5",
+    "@types/sequelize": "^4.28.20",
     "morgan": "^1.10.0",
-    "multer": "^1.4.5-lts.1",
     "nodemon": "^3.1.0"
   }
 }
