@@ -32,6 +32,17 @@ services:
       retries: 10
     networks:
       - autominder_networks
+  
+  #frontend
+  frontend:
+    container_name: autominder_frontend
+    build: ./front
+    ports:
+      - 8081:8081
+    volumes:
+      - ./front:/app-ui
+    networks:
+      - autominder_networks
 
 networks:
   autominder_networks:
