@@ -25,3 +25,5 @@ dbConnect.db();
 app.listen(PORT, () => {
   console.log(`Server on http://localhost:${PORT}`);
 });
+
+export default app;

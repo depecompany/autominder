@@ -63,15 +63,21 @@ import { encrypt } from "../../utils/handlerPass";
  *                   type: string
  */
 const registerNewUser = async ({ body }: Request, res: Response) => {
-  const { email, password } = body;
-  const foundEmail = await checkIfEmailExists(email);
   let response = {
     result: false,
     action: "Success",
     message: "email is already used",
+    user: {},
     status: 400,
     jwt: "",
   };
+  if (!body.email && !body.password && !body.username) {
+    response.action = "Error";
+    response.message = "data missing";
+    res.send(response).status(400);
+  }
+  const { email, password } = body;
+  const foundEmail = await checkIfEmailExists(email);
 
   const predefinedData = {
     isTester: false,
@@ -102,9 +108,10 @@ const registerNewUser = async ({ body }: Request, res: Response) => {
     response.action = "success";
     response.jwt = jwt;
     response.status = 200;
+    response.user = body;
   }
 
-  res.send(response);
+  res.send(response).status(response.status);
 };
 
 export { registerNewUser };
