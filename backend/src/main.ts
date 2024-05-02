@@ -6,6 +6,8 @@ import cors from "cors";
 import dbConnect from "./config/db.config";
 import { router as routerAPI } from "./route/ApiV1/index";
 import { router as routerAdmin } from "./route/index";
+import swaggerUi from "swagger-ui-express";
+import { swaggerDocs } from "./config/swagger.config";
 
 const PORT = process.env.PORT;
 
@@ -16,6 +18,7 @@ app.use(morgan("combined"));
 app.use(cors());
 app.use("/api", routerAPI);
 app.use("/admin", routerAdmin);
+app.use("/api-doc/", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 dbConnect.db();
 
