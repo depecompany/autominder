@@ -23,4 +23,8 @@ $ docker-compose up -d
 # Instalar dependencias backend
 $ cd backend
 $ npm install
+
+# Instalar dependencias frontend
+$ cd front
+$ npm install
 ```
