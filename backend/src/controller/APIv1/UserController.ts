@@ -43,8 +43,6 @@ import { UserInterface } from "../../interfaces/User.inteface";
  *                   type: string
  *                 status:
  *                   type: integer
- *                 jwt:
- *                   type: string
  *       '400':
  *         description: Bad request - Email is already in use
  *         content:
@@ -70,7 +68,6 @@ const registerNewUser = async ({ body }: Request, res: Response) => {
     message: "email is already used",
     user: {},
     status: 400,
-    jwt: "",
   };
   if (!body.email && !body.password && !body.username) {
     response.action = "Error";
