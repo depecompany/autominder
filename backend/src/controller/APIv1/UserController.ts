@@ -90,7 +90,7 @@ const registerNewUser = async ({ body }: Request, res: Response) => {
     isPremium: false,
   };
 
-  if (!foundEmail) {
+  if (foundEmail) {
     const UserModel = new User();
     const passHash = await encrypt(password);
     body = { ...body, ...predefinedData };
@@ -110,6 +110,15 @@ const registerNewUser = async ({ body }: Request, res: Response) => {
   }
 
   res.send(response).status(response.status);
+};
+
+const login = async ({ body }: Request, res: Response) => {
+  const { email, password } = body;
+
+  let isAvaleibleEmail = true;
+  checkIfEmailExists(email).then((exists) => {
+    isAvaleibleEmail = false;
+  });
 };
 
 export { registerNewUser };

@@ -25,6 +25,7 @@ const sequelize = new Sequelize(
     dialect: "postgres",
     host: "postgres",
     port: parseInt(POSTGRES_PORT),
+    logging: false,
   }
 );
 
