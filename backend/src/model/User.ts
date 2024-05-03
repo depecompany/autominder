@@ -30,7 +30,6 @@ class User {
 
     try {
       await pool.query(query);
-      console.log("Tabla usuarios creada correctamente.");
     } catch (error) {
       console.error("Error al crear la tabla usuarios:", error);
       throw error;
@@ -79,9 +78,7 @@ class User {
 
     try {
       await pool.query(query, values);
-      console.log("Usuario guardado correctamente.");
     } catch (error) {
-      console.error("Error al guardar el usuario:", error);
       throw error;
     }
   }
@@ -91,9 +88,7 @@ class User {
 
     try {
       await pool.query(query, email);
-    } catch (err) {
-      console.log('Error during the function "findByEmail"');
-    }
+    } catch (err) {}
   }
 }
 

@@ -3,6 +3,7 @@ import { generateToken } from "../../utils/handlerJWT";
 import { User } from "../../model/User";
 import { checkIfEmailExists } from "../../service/authService";
 import { encrypt } from "../../utils/handlerPass";
+import { completeUserAuth } from "../../types/types";
 
 /**
  * @swagger
@@ -63,15 +64,21 @@ import { encrypt } from "../../utils/handlerPass";
  *                   type: string
  */
 const registerNewUser = async ({ body }: Request, res: Response) => {
-  const { email, password } = body;
-  const foundEmail = await checkIfEmailExists(email);
   let response = {
     result: false,
     action: "Success",
     message: "email is already used",
+    user: {},
     status: 400,
     jwt: "",
   };
+  if (!body.email && !body.password && !body.username) {
+    response.action = "Error";
+    response.message = "data missing";
+    res.send(response).status(400);
+  }
+  const { email, password } = body;
+  const foundEmail = await checkIfEmailExists(email);
 
   const predefinedData = {
     isTester: false,
@@ -89,22 +96,20 @@ const registerNewUser = async ({ body }: Request, res: Response) => {
     body = { ...body, ...predefinedData };
     body.password = passHash;
     response.message = "User saved succesfully";
-    UserModel.saveUser(body)
-      .then(() => {
-        console.log("Usuario guardado correctamente");
-      })
-      .catch((err) => {
-        response.message = "user not saved succesfully";
-        console.log(body);
-      });
+    UserModel.saveUser(body).catch((err) => {
+      response.message = "user not saved succesfully";
+    });
     const jwt = generateToken(body);
     response.result = true;
     response.action = "success";
     response.jwt = jwt;
     response.status = 200;
+    delete body.password;
+    const userCompletedAuth: completeUserAuth = body;
+    response.user = userCompletedAuth;
   }
 
-  res.send(response);
+  res.send(response).status(response.status);
 };
 
 export { registerNewUser };
