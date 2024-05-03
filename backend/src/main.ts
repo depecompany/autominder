@@ -20,12 +20,20 @@ app.use("/api", routerAPI);
 app.use("/admin", routerAdmin);
 app.use("/api-doc/", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
-dbConnect.db();
-
-if (process.env.NODE_ENV !== "test") {
-  app.listen(PORT, () => {
-    console.log(`Server on http://localhost:${PORT}`);
+dbConnect.sq
+  .authenticate()
+  .then(() => {
+    return dbConnect.sq.sync();
+  })
+  .then(() => {
+    if (process.env.NODE_ENV !== "test") {
+      app.listen(PORT, () => {
+        console.log(`Server on http://localhost:${PORT}`);
+      });
+    }
+  })
+  .catch((err) => {
+    console.error(err);
   });
-}
 
 export default app;
