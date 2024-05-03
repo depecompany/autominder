@@ -3,6 +3,7 @@ import { generateToken } from "../../utils/handlerJWT";
 import { User } from "../../model/User";
 import { checkIfEmailExists } from "../../service/authService";
 import { encrypt } from "../../utils/handlerPass";
+import { completeUserAuth } from "../../types/types";
 
 /**
  * @swagger
@@ -95,20 +96,17 @@ const registerNewUser = async ({ body }: Request, res: Response) => {
     body = { ...body, ...predefinedData };
     body.password = passHash;
     response.message = "User saved succesfully";
-    UserModel.saveUser(body)
-      .then(() => {
-        console.log("Usuario guardado correctamente");
-      })
-      .catch((err) => {
-        response.message = "user not saved succesfully";
-        console.log(body);
-      });
+    UserModel.saveUser(body).catch((err) => {
+      response.message = "user not saved succesfully";
+    });
     const jwt = generateToken(body);
     response.result = true;
     response.action = "success";
     response.jwt = jwt;
     response.status = 200;
-    response.user = body;
+    delete body.password;
+    const userCompletedAuth: completeUserAuth = body;
+    response.user = userCompletedAuth;
   }
 
   res.send(response).status(response.status);

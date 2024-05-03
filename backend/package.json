@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/main.ts",
   "scripts": {
-    "test": "jest --passWithNoTests --coverage",
+    "test": "NODE_ENV=test jest --passWithNoTests --coverage --forceExit",
     "dev": "nodemon"
   },
   "keywords": [],
