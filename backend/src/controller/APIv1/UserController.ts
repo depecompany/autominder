@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import { generateToken } from "../../utils/handlerJWT";
-import { User } from "../../model/User";
+import UserModel from "../../model/User";
 import { checkIfEmailExists } from "../../service/authService";
 import { encrypt } from "../../utils/handlerPass";
 import { completeUserAuth } from "../../types/types";
+import { UserInterface } from "../../interfaces/User.inteface";
 
 /**
  * @swagger
@@ -78,35 +78,34 @@ const registerNewUser = async ({ body }: Request, res: Response) => {
     res.send(response).status(400);
   }
   const { email, password } = body;
-  const foundEmail = await checkIfEmailExists(email);
+  const isAvaleibleEmail = await checkIfEmailExists(email);
 
   const predefinedData = {
     isTester: false,
     isActive: true,
-    role: "usuario",
+    role: "USER",
     avatar: "avatar.jpg",
     allowPersonalDocuments: false,
     timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
     isPremium: false,
   };
 
-  if (foundEmail) {
-    const UserModel = new User();
+  // if is false, the email is not register in the database
+  if (!isAvaleibleEmail) {
     const passHash = await encrypt(password);
-    body = { ...body, ...predefinedData };
+    body = { ...body, ...predefinedData } as UserInterface;
     body.password = passHash;
     response.message = "User saved succesfully";
-    UserModel.saveUser(body).catch((err) => {
-      response.message = "user not saved succesfully";
-    });
-    const jwt = generateToken(body);
+    UserModel.create(body);
     response.result = true;
     response.action = "success";
-    response.jwt = jwt;
     response.status = 200;
     delete body.password;
     const userCompletedAuth: completeUserAuth = body;
     response.user = userCompletedAuth;
+  } else {
+    response.message = "conflict";
+    response.status = 403;
   }
 
   res.send(response).status(response.status);
