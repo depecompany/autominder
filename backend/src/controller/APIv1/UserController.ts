@@ -1,9 +1,10 @@
 import { Request, Response } from "express";
 import UserModel from "../../model/User";
 import { checkIfEmailExists } from "../../service/authService";
-import { encrypt } from "../../utils/handlerPass";
+import { encrypt, verified } from "../../utils/handlerPass";
 import { completeUserAuth } from "../../types/types";
 import { UserInterface } from "../../interfaces/User.inteface";
+import { generateToken } from "../../utils/handlerJWT";
 
 /**
  * @swagger
@@ -109,12 +110,41 @@ const registerNewUser = async ({ body }: Request, res: Response) => {
 };
 
 const login = async ({ body }: Request, res: Response) => {
+  let response = {
+    result: false,
+    action: "Error",
+    message: "Bad Request",
+    user: {},
+    status: 400,
+  };
   const { email, password } = body;
+  const emailAvaleible = await checkIfEmailExists(email);
 
-  let isAvaleibleEmail = true;
-  checkIfEmailExists(email).then((exists) => {
-    isAvaleibleEmail = false;
-  });
+  if (emailAvaleible) {
+    const user: any = await UserModel.findOne({ where: { email: email } })
+      .then((foundUser) => {
+        return foundUser?.dataValues;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    const verify = verified(password, user.email);
+    if (!verify) res.json(response).status(response.status);
+
+    console.log(user);
+    const token = generateToken(user);
+    delete user.password;
+    response.result = true;
+    response.action = "Success";
+    response.message = token;
+    response.status = 201;
+    response.user = user;
+
+    res.json(response).status(response.status);
+  } else {
+    res.json(response).status(response.status);
+  }
 };
 
-export { registerNewUser };
+export { registerNewUser, login };
