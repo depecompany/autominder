@@ -1,10 +1,11 @@
-import { Request, Response } from "express";
+import { Request, Response, response } from "express";
 import UserModel from "../../model/User";
 import { checkIfEmailExists } from "../../service/authService";
 import { encrypt, verified } from "../../utils/handlerPass";
-import { completeUserAuth } from "../../types/types";
+import { SendEmailType, completeUserAuth } from "../../types/types";
 import { UserInterface } from "../../interfaces/User.inteface";
 import { generateToken } from "../../utils/handlerJWT";
+import { sendEmail } from "../../service/sendEmailService";
 
 /**
  * @swagger
@@ -147,4 +148,25 @@ const login = async ({ body }: Request, res: Response) => {
   }
 };
 
-export { registerNewUser, login };
+const sendEmailController = async ({ body }: Request, res: Response) => {
+  const { to, subject, text }: SendEmailType = body;
+  const senderEmail = await sendEmail({ to, subject, text });
+  let response = {
+    result: false,
+    action: "Error",
+    message: "Bad Request",
+    status: 400,
+  };
+
+  if (senderEmail || senderEmail === "mail send with exist") {
+    response.result = true;
+    (response.action = "Success"),
+      (response.message = "Correo enviado exitosamente");
+    response.status = 200;
+    res.send(response).status(response.status);
+  } else {
+    res.send(response).status(response.status);
+  }
+};
+
+export { registerNewUser, login, sendEmailController };
