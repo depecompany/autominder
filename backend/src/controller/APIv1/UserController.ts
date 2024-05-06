@@ -169,4 +169,36 @@ const sendEmailController = async ({ body }: Request, res: Response) => {
   }
 };
 
-export { registerNewUser, login, sendEmailController };
+const recoveryPass = async ({ body }: Request, res: Response) => {
+  const { email, newPass, pass } = body;
+  const checkIfUserExist = checkIfEmailExists(`${email}`);
+
+  let response = {
+    result: false,
+    action: "Error",
+    message: "Bad Request",
+    user: {},
+    status: 400,
+  };
+  if (newPass === pass) {
+    if (!checkIfUserExist) {
+      res.send(response).status(response.status);
+    }
+    response.action = "Success";
+    response.message = "user updated";
+    response.status = 200;
+    response.result = true;
+
+    const updateUser = await UserModel.update(
+      { password: await encrypt(newPass) },
+      { where: { email: email } }
+    );
+    response.user = updateUser;
+
+    res.send(response).status(response.status);
+  } else {
+    res.send(response).status(response.status);
+  }
+};
+
+export { registerNewUser, login, sendEmailController, recoveryPass };
