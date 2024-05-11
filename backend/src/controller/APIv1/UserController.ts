@@ -105,6 +105,7 @@ const registerNewUser = async ({ body }: Request, res: Response) => {
   } else {
     response.message = "conflict";
     response.status = 403;
+    response.message = "hola";
   }
 
   res.send(response).status(response.status);
