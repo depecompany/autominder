@@ -1,6 +1,7 @@
 import dbConnection from "../config/db.config";
 import { DataTypes } from "sequelize";
 import UserModel from "./User";
+import MaintenanceModel from "./Maintenance";
 
 const CarModel = dbConnection.sq.define("cars", {
   model: { type: DataTypes.STRING, allowNull: false },
@@ -12,9 +13,8 @@ const CarModel = dbConnection.sq.define("cars", {
   chasis: { type: DataTypes.INTEGER, allowNull: true },
   fuelType: { type: DataTypes.STRING, allowNull: true },
   hasMaintence: {
-    type: DataTypes.BOOLEAN,
+    type: DataTypes.ARRAY(DataTypes.INTEGER),
     allowNull: true,
-    defaultValue: false,
   },
   userId: {
     type: DataTypes.INTEGER,
