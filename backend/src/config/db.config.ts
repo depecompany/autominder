@@ -29,27 +29,7 @@ const sequelize = new Sequelize(
   }
 );
 
-const databaseConnection = async () => {
-  pool.connect((err, client, release) => {
-    if (err) {
-      return console.error("Error connecting to database ", err);
-    }
-
-    console.log("Connection to database");
-    release();
-  });
-};
-
-const databaseConnectionSequelize = async () => {
-  try {
-    await sequelize.authenticate();
-  } catch (err) {
-    sequelize.close();
-  }
-};
-
 export default {
   pool: pool,
-  db: databaseConnection,
   sq: sequelize,
 };

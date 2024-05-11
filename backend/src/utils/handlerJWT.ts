@@ -1,8 +1,9 @@
 import { sign, verify } from "jsonwebtoken";
+import { UserInterface } from "../interfaces/User.inteface";
 
 const JWT_TOKEN = process.env.JWT_SECRET as string;
 
-const generateToken = (payload: Object) => {
+const generateToken = (payload: any) => {
   const jwt = sign(payload, JWT_TOKEN, {
     algorithm: "HS256",
   });
