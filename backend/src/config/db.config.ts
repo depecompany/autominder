@@ -8,6 +8,8 @@ const POSTGRES_USERNAME = process.env.DB_USERNAME as string;
 const POSTGRES_PASSWORD = process.env.DB_PASSWORD as string;
 const POSTGRES_PORT = process.env.DB_PORT as string;
 
+console.log(POSTGRES_PASSWORD, typeof POSTGRES_PASSWORD);
+
 const sequelize = new Sequelize(
   POSTGRES_DATABASE,
   POSTGRES_USERNAME,
