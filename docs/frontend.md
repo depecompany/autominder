@@ -3,7 +3,7 @@ El frontend es el encargado de visualizar y obtener datos, necesario para el bac
 
 ## Requisitos
 - NPM
-- EXPO
+- [EXPO](https://docs.expo.dev/more/expo-cli/)
 - ANDROID STUDIO
 
 ## Levantar docker
