@@ -1,6 +1,11 @@
 # Frontend
 El frontend es el encargado de visualizar y obtener datos, necesario para el backend
 
+## Requisitos
+- NPM
+- EXPO
+- ANDROID STUDIO
+
 ## Levantar docker
 
 ```sh
