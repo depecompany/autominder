@@ -8,10 +8,12 @@ import { router as routerAPI } from "./route/ApiV1/index";
 import { router as routerAdmin } from "./route/index";
 import swaggerUi from "swagger-ui-express";
 import { swaggerDocs } from "./config/swagger.config";
+import limiter from "./middleware/rateLimit";
 
 const PORT = process.env.PORT;
 
 const app: Application = express();
+app.use(limiter);
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(morgan("combined"));
