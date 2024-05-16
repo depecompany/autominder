@@ -11,6 +11,7 @@ import { swaggerDocs } from "./config/swagger.config";
 import limiter from "./middleware/rateLimit";
 import hpp from "hpp";
 import helmet from "helmet";
+import compression from "compression";
 
 const PORT = process.env.PORT;
 
@@ -18,6 +19,7 @@ const app: Application = express();
 app.use(limiter);
 app.use(hpp());
 app.use(helmet());
+app.use(compression());
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(morgan("combined"));
