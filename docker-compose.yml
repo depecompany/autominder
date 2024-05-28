@@ -10,8 +10,6 @@ services:
       - ./backend/.env
     environment:
       - NODE_ENV=development
-    command: >
-      sh -c "nodemon ./src/main.ts && npx ts-node ./src/bin/seed.db.ts"
     depends_on:
       - postgres
     networks:
