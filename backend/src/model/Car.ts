@@ -26,7 +26,7 @@ const CarModel = dbConnection.sq.define("cars", {
   },
 });
 
-CarModel.belongsTo(UserModel, { foreignKey: "userId" });
+CarModel.belongsTo(UserModel, { foreignKey: "userId", onDelete: "cascade" });
 
 console.log(CarModel.getTableName());
 

@@ -105,7 +105,6 @@ const registerNewUser = async ({ body }: Request, res: Response) => {
   } else {
     response.message = "conflict";
     response.status = 403;
-    response.message = "hola";
   }
 
   res.send(response).status(response.status);
@@ -170,4 +169,15 @@ const sendEmailController = async ({ body }: Request, res: Response) => {
   }
 };
 
-export { registerNewUser, login, sendEmailController };
+const getUserById = async ({ params }: Request, res: Response) => {
+  const { id } = params;
+  let userData;
+  await UserModel.findOne({ where: { id: id } }).then((user) => {
+    userData = user?.dataValues;
+  });
+
+  res.send(userData).status(200);
+};
+1;
+
+export { registerNewUser, login, sendEmailController, getUserById };
