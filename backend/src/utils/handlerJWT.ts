@@ -25,7 +25,7 @@ const getUserIdFromToken = (token: string) => {
     userId = decodedJwtToken?.id;
   });
 
-  return userId ? parseInt(userId) : null;
+  return userId;
 };
 
 export { generateToken, verifyToken, getUserIdFromToken };

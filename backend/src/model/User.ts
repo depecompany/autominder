@@ -7,7 +7,10 @@ const UserModel = dbConnection.sq.define("users", {
   password: { type: DataTypes.STRING, allowNull: false },
   firstName: { type: DataTypes.STRING, allowNull: true },
   lastName: { type: DataTypes.STRING, allowNull: true },
-  carGroup: { type: DataTypes.INTEGER, allowNull: true },
+  carGroup: {
+    type: DataTypes.ARRAY(DataTypes.INTEGER),
+    allowNull: true,
+  },
   isTester: { type: DataTypes.BOOLEAN, allowNull: false },
   isActive: { type: DataTypes.BOOLEAN, allowNull: false },
   role: {

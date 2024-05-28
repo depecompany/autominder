@@ -9,6 +9,6 @@ const router = Router();
 
 router.post("/create", checkJwt, createNewCar);
 
-router.get("/get", checkJwt, getCarByUserId);
+router.get("/get/:userId", checkJwt, getCarByUserId);
 
 export { router };

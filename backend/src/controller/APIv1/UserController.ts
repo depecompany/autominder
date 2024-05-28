@@ -169,4 +169,15 @@ const sendEmailController = async ({ body }: Request, res: Response) => {
   }
 };
 
-export { registerNewUser, login, sendEmailController };
+const getUserById = async ({ params }: Request, res: Response) => {
+  const { id } = params;
+  console.log(id);
+  let userData;
+  await UserModel.findOne({ where: { id: id } }).then((user) => {
+    userData = user?.dataValues;
+  });
+
+  res.send(userData).status(200);
+};
+
+export { registerNewUser, login, sendEmailController, getUserById };

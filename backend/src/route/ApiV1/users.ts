@@ -3,7 +3,9 @@ import {
   login,
   registerNewUser,
   sendEmailController,
+  getUserById,
 } from "../../controller/APIv1/UserController";
+import { checkJwt } from "../../middleware/session";
 
 const router = Router();
 
@@ -16,5 +18,7 @@ router.post("/auth/register", registerNewUser);
 router.post("/auth/login", login);
 
 router.post("/auth/send-email", sendEmailController);
+
+router.get("/:id", checkJwt, getUserById);
 
 export { router };
