@@ -1,3 +1,5 @@
+import { JwtPayload } from "jsonwebtoken";
+
 export interface UserInterface extends AuthUser {
   id: number;
   firstName: string;
@@ -17,4 +19,8 @@ export interface AuthUser {
   email: string;
   username: string;
   password: string;
+}
+
+export interface decodedToken extends JwtPayload {
+  id: number;
 }

@@ -1,5 +1,5 @@
 import { sign, verify } from "jsonwebtoken";
-import { UserInterface } from "../interfaces/User.inteface";
+import { UserInterface, decodedToken } from "../interfaces/User.inteface";
 
 const JWT_TOKEN = process.env.JWT_SECRET as string;
 
@@ -16,4 +16,16 @@ const verifyToken = (token: string) => {
   return isOk;
 };
 
-export { generateToken, verifyToken };
+const getUserIdFromToken = (token: string) => {
+  let userId: any;
+  const isOk = verify(token, JWT_TOKEN, (err, decoded) => {
+    if (err) return false;
+
+    let decodedJwtToken = decoded as any;
+    userId = decodedJwtToken?.id;
+  });
+
+  return userId ? parseInt(userId) : null;
+};
+
+export { generateToken, verifyToken, getUserIdFromToken };

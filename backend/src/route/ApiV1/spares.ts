@@ -8,16 +8,20 @@ import {
 } from "../../controller/APIv1/SpareController";
 import { checkJwt } from "../../middleware/session";
 
+/**
+ * This is Spare CRUD
+ */
+
 const router = Router();
 
-router.get("/spares", checkJwt, getAllSpares);
+router.get("/", checkJwt, getAllSpares);
 
-router.get("/spare", checkJwt, getSpecifySpare);
+router.get("/:id", checkJwt, getSpecifySpare);
 
 router.post("/create", checkJwt, registerNewSpare);
 
-router.put("edit-spare", checkJwt, editSpare);
+router.put("/edit-spare/:id", checkJwt, editSpare);
 
-router.delete("delete-spare", checkJwt, deleteSpecifySpare);
+router.delete("/delete-spare/:id", checkJwt, deleteSpecifySpare);
 
 export { router };
