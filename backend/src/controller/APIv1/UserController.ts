@@ -171,7 +171,6 @@ const sendEmailController = async ({ body }: Request, res: Response) => {
 
 const getUserById = async ({ params }: Request, res: Response) => {
   const { id } = params;
-  console.log(id);
   let userData;
   await UserModel.findOne({ where: { id: id } }).then((user) => {
     userData = user?.dataValues;
@@ -179,5 +178,6 @@ const getUserById = async ({ params }: Request, res: Response) => {
 
   res.send(userData).status(200);
 };
+1;
 
 export { registerNewUser, login, sendEmailController, getUserById };
