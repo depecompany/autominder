@@ -11,7 +11,7 @@ services:
     environment:
       - NODE_ENV=development
     command: >
-      sh -c "npx ts-node ./src/bin/seed.db.ts"
+      sh -c "nodemon ./src/main.ts && npx ts-node ./src/bin/seed.db.ts"
     depends_on:
       - postgres
     networks:
