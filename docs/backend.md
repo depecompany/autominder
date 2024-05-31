@@ -22,7 +22,16 @@ Se utiliza el framework [Express](https://expressjs.com/)
 
 ## Estructura de archivos
 
-Pendiente
+- config
+- Controller
+- interfaces
+- model
+- route
+- service
+- tests
+- types
+- utils
+main.ts -> archivo principal en donde se ejecuta el servidor
 
 ## Librerias pendientes
 
