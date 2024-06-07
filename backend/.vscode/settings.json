@@ -1,0 +1,55 @@
+{
+    "liveServer.settings.donotShowInfoMsg": true,
+    "editor.fontFamily": " \"Cascadia Code\", \"Monoid Nerd Font\", \"Mononiki Code\", \"Victor mono\", monospace",
+    "explorer.confirmDragAndDrop": false,
+    "workbench.editor.enablePreview": false,
+    "gopls": {
+      "build.experimentalWorkspaceModule": true
+    },
+    "npm.keybindingsChangedWarningShown": true,
+    "[html]": {
+      "editor.defaultFormatter": "vscode.html-language-features"
+    },
+    "python.defaultInterpreterPath": "/opt/homebrew/bin/python3",
+    "workbench.preferredDarkColorTheme": "Visual Studio Dark",
+    "oneDarkPro.bold": true,
+    "oneDarkPro.vivid": true,
+    "editor.fontLigatures": true,
+    "editor.fontWeight": "normal",
+    "[typescript]": {
+      "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "window.zoomLevel": 1,
+    "[scss]": {
+      "editor.defaultFormatter": "vscode.css-language-features"
+    },
+    "explorer.confirmDelete": false,
+    "files.associations": {
+      "*.html": "html"
+    },
+    "[javascript]": {
+      "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "[python]": {
+      "editor.formatOnType": true
+    },
+    "editor.formatOnSave": true,
+    "js/ts.implicitProjectConfig.target": "ES2022",
+    "oneDarkPro.editorTheme": "One Dark Pro Darker",
+    "workbench.productIconTheme": "fluent-icons",
+    "notebook.formatOnSave.enabled": true,
+    "errorLens.excludeBySource": [
+      "ts(2345)",
+      "ts(2430)"
+    ],
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "settingsSync.ignoredSettings": [
+    
+    ],
+    "symbols.hidesExplorerArrows": false,
+    "workbench.colorTheme": "Ayu Dark",
+    "workbench.settings.applyToAllProfiles": [
+      
+    ]
+  }
+  
