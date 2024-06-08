@@ -5,6 +5,7 @@ Para actualizar a WSL2
    1. Para sistemas x64: versión 1903 o posterior, con la compilación 18362 o posterior.
    2. Para sistemas ARM64: versión 2004 o posterior, con la compilación 19041 o posterior.
 - Windows 11
+- Desintalar container autominder, si es que el proyecto ya esta instalado dentro de su maquina local
 
 ### Opcional
 - Instalar [Windows Terminal](https://learn.microsoft.com/en-us/windows/terminal/install) para el manejo de consolas (incluye PwerShell, CMD, GitBash, WSL, etc)
