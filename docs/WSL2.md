@@ -123,4 +123,4 @@ npm install
 ```
 
 ### Cargar proyecto en IDE
-1. Abrir IDE y selecionar carpeta /home/<usuario>/autominder
+1. Abrir IDE y selecionar carpeta /home/usuario-aqui/autominder
