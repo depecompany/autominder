@@ -9,8 +9,8 @@ Para actualizar a WSL2
 ### Opcional
 - Instalar [Windows Terminal](https://learn.microsoft.com/en-us/windows/terminal/install) para el manejo de consolas (incluye PwerShell, CMD, GitBash, WSL, etc)
 
-- ## Preparar ambiente
-- ### Instalar Linux en Windows con WSL (Windows subsystem for linux)
+## Preparar ambiente
+### Instalar Linux en Windows con WSL (Windows subsystem for linux)
 
 1. Instalar WSL
 ``` bash
