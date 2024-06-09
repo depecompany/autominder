@@ -11,8 +11,8 @@ const registerNewSpare = async ({ body }: Request, res: Response) => {
   };
 
   if (!body) res.send(response).status(response.status);
-
-  const newSpare = await SparePartsModel.create(body);
+  const { name, isOriginal, price, carId } = body;
+  const newSpare = await SparePartsModel.create({ name, isOriginal, price, carId });
 
   response.result = true;
   response.action = "Success";
