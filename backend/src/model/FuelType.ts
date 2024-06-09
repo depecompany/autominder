@@ -2,7 +2,7 @@ import dbConnection from "../config/db.config";
 import { DataTypes } from "sequelize";
 import CarModel from "./Car";
 
-const FuelTypeModel = dbConnection.sq.define("carType", {
+const FuelTypeModel = dbConnection.sq.define("fuelTypes", {
   fuel: { type: DataTypes.STRING, allowNull: false },
   carId: {
     type: DataTypes.INTEGER,
