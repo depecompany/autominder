@@ -4,11 +4,12 @@ import UserModel from "./User";
 import MaintenanceModel from "./Maintenance";
 import CarTypeModel from "./CarType";
 import FuelTypeModel from "./FuelType";
+import BrandModel from "./Brand";
 
 const CarModel = dbConnection.sq.define("cars", {
   model: { type: DataTypes.STRING, allowNull: false },
   releaseYear: { type: DataTypes.INTEGER, allowNull: false },
-  brand: { type: DataTypes.STRING, allowNull: false },
+  brand: { type: DataTypes.INTEGER, allowNull: true, references: { model: "brands", key: "id" } },
   carType: { type: DataTypes.INTEGER, allowNull: true, references: { model: "carTypes", key: "id" } },
   isPersonal: { type: DataTypes.BOOLEAN, allowNull: true, defaultValue: true },
   mileage: { type: DataTypes.INTEGER, allowNull: true, defaultValue: 0 },
@@ -31,6 +32,7 @@ const CarModel = dbConnection.sq.define("cars", {
 CarModel.belongsTo(UserModel, { foreignKey: "userId", onDelete: "cascade" });
 CarModel.hasOne(CarTypeModel, { foreignKey: "carType", as: "carTypeDetail", onDelete: "cascade" });
 CarModel.hasOne(FuelTypeModel, { foreignKey: "fuelType", as: "fuelTypeDetail", onDelete: "cascade" });
+CarModel.hasOne(BrandModel, { foreignKey: "brand", as: "brandDetail", onDelete: "cascade" });
 
 console.log(CarModel.getTableName());
 
