@@ -5,8 +5,6 @@ import UserModel from '../model/User'
 
 const seed = async () => {
     try {
-        console.log('dentro')
-        await dbConnection.auth();
         await UserModel.bulkCreate([
             { name: 'John Doe', email: 'jonh.doe@example', password: "123456" },
             { name: 'admin', email: 'admin@admin.cl', password: 'Testing-1@' }
