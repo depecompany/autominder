@@ -3,7 +3,7 @@ import { DataTypes } from "sequelize";
 import SparePartsModel from "./SpareParts";
 import CarModel from "./Car";
 
-const MaintenanceModel = dbConnection.sq.define("maintences", {
+const MaintenanceModel = dbConnection.sq.define("maintenances", {
   part: { type: DataTypes.STRING, allowNull: false },
   sparePartsId: {
     type: DataTypes.INTEGER,
