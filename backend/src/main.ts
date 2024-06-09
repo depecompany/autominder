@@ -31,7 +31,7 @@ app.use("/api-doc/", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 dbConnect.sq
   .authenticate()
   .then(() => {
-    return dbConnect.sq.sync({ alter: true });
+    return dbConnect.sq.sync({ alter: false });
   })
   .then(() => {
     if (process.env.NODE_ENV !== "test") {

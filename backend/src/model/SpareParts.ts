@@ -2,7 +2,7 @@ import dbConnection from "../config/db.config";
 import { DataTypes } from "sequelize";
 import CarModel from "./Car";
 
-const SparePartsModel = dbConnection.sq.define("carType", {
+const SparePartsModel = dbConnection.sq.define("spares", {
   name: { type: DataTypes.STRING, allowNull: false },
   isOriginal: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: true },
   price: { type: DataTypes.INTEGER, allowNull: true, defaultValue: 0 },
