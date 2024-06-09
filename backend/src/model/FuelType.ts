@@ -1,20 +1,10 @@
 import dbConnection from "../config/db.config";
 import { DataTypes } from "sequelize";
-import CarModel from "./Car";
 
 const FuelTypeModel = dbConnection.sq.define("fuelTypes", {
   fuel: { type: DataTypes.STRING, allowNull: false },
-  carId: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    references: {
-      model: CarModel,
-      key: "id",
-    },
-  },
+  description: { type: DataTypes.STRING, allowNull: false },
 });
-
-FuelTypeModel.belongsTo(CarModel, { foreignKey: "carId" });
 
 console.log(FuelTypeModel.getTableName());
 
